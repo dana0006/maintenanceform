@@ -1,0 +1,31 @@
+<odoo>
+  <record id="view_maintenance_block_form" model="ir.ui.view">
+    <field name="name">maintenance.block.form</field>
+    <field name="model">maintenance.block</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_maintenance_block_tree" model="ir.ui.view">
+    <field name="name">maintenance.block.tree</field>
+    <field name="model">maintenance.block</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="action_maintenance_block" model="ir.actions.act_window">
+    <field name="name">Blocks</field>
+    <field name="res_model">maintenance.block</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+</odoo>

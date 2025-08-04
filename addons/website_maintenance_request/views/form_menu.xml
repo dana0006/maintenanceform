@@ -1,0 +1,6 @@
+<odoo>
+  <menuitem id="menu_maintenance_custom_root" name="Maintenance Setup"/>
+  <menuitem id="menu_maintenance_block" name="Blocks" parent="menu_maintenance_custom_root" action="action_maintenance_block"/>
+  <menuitem id="menu_maintenance_floor" name="Floors" parent="menu_maintenance_custom_root" action="action_maintenance_floor"/>
+  <menuitem id="menu_maintenance_classroom" name="Classrooms" parent="menu_maintenance_custom_root" action="action_maintenance_classroom"/>
+</odoo>

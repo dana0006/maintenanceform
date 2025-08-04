@@ -1,0 +1,9 @@
+<odoo>
+  <template id="thank_you_template" name="Thank You">
+    <t t-call="website.layout">
+      <div class="container mt32">
+        <h3>Thank you! Your maintenance request has been submitted successfully.</h3>
+      </div>
+    </t>
+  </template>
+</odoo>
