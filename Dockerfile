@@ -1,13 +1,9 @@
-FROM odoo:17.0
+FROM odoo:18.0
+LABEL maintainer="Render Deployment"
 
-COPY ./addons /mnt/extra-addons
 COPY ./odoo.conf /etc/odoo/odoo.conf
+COPY ./addons /mnt/extra-addons
 
-ENV ADDONS_PATH=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons
+ENV HOST=0.0.0.0
 
-CMD odoo -c /etc/odoo/odoo.conf \
-    --db_host=postgres.railway.internal \
-    --db_port=$PGPORT \
-    --db_user=$PGUSER \
-    --db_password=$PGPASSWORD \
-    --xmlrpc-port=$PORT
+CMD ["odoo", "-c", "/etc/odoo/odoo.conf"]
