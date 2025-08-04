@@ -6,6 +6,7 @@ USER odoo
 
 COPY ./odoo.conf /etc/odoo/
 COPY ./addons /mnt/extra-addons
+COPY ./init.sh /init.sh
 
-# Initialize database on first run
-CMD ["sh", "-c", "odoo -c /etc/odoo/odoo.conf -i base --stop-after-init && odoo -c /etc/odoo/odoo.conf"]
+RUN chmod +x /init.sh
+CMD ["/init.sh"]

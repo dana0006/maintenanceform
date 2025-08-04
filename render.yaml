@@ -3,7 +3,6 @@ services:
     name: odoo-app
     runtime: docker
     dockerfilePath: ./Dockerfile
-    dockerCommand: odoo -c /etc/odoo/odoo.conf -i base
     envVars:
       - key: PORT
         value: 10000
