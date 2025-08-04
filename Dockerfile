@@ -1,5 +1,5 @@
 # 👇 REQUIRED: base image
-FROM odoo:18.4
+FROM odoo:17.0
 
 # Optional: add your custom module
 COPY ./addons /mnt/extra-addons
