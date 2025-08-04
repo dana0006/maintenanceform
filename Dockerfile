@@ -6,7 +6,10 @@ USER odoo
 
 COPY ./odoo.conf /etc/odoo/
 COPY ./addons /mnt/extra-addons
-COPY ./init.sh /init.sh
+COPY ./init_clean.sh /init_clean.sh
 
-RUN chmod +x /init.sh
-CMD ["/init.sh"]
+USER root
+RUN chmod +x /init_clean.sh
+USER odoo
+
+CMD ["/init_clean.sh"]
