@@ -3,7 +3,9 @@ services:
     name: odoo-app
     runtime: docker
     dockerfilePath: ./Dockerfile
-    dockerCommand: odoo -c /etc/odoo/odoo.conf --without-demo=all
+    dockerCommand: odoo -c /etc/odoo/odoo.conf
     envVars:
       - key: PORT
         value: 10000
+      - key: DATABASE_URL
+        value: postgresql://postgres:Gam9myGgt95LS76o@db.evdbkllydkotuqhhfyuk.supabase.co:5432/postgres?sslmode=require
