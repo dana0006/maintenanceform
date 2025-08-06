@@ -6,6 +6,16 @@ services:
     envVars:
       - key: PORT
         value: 10000
+      - key: DB_HOST
+        value: aws-0-ap-southeast-1.pooler.supabase.com
+      - key: DB_PORT
+        value: 6543
+      - key: DB_USER
+        value: postgres.evdbkllydkotuqhhfyuk  # Replace with your actual Supabase user
+      - key: DB_PASSWORD
+        value: BMMdA6AiLZueLJ4G     # Replace with your actual password
+      - key: DB_NAME
+        value: postgres                     # Default Supabase database name
     disk:
       name: odoo-filestore
       mountPath: /var/lib/odoo

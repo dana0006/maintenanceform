@@ -9,6 +9,5 @@ COPY ./addons /mnt/extra-addons
 
 USER odoo
 
-ENV ODOO_ALLOW_POSTGRES_USER=1
-
-CMD ["odoo", "-c", "/etc/odoo/odoo.conf"]
+# Use environment variables for database connection
+CMD ["sh", "-c", "odoo -c /etc/odoo/odoo.conf --db_host=${DB_HOST} --db_port=${DB_PORT} --db_user=${DB_USER} --db_password=${DB_PASSWORD}"]
