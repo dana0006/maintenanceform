@@ -7,6 +7,6 @@ services:
       - key: PORT
         value: 10000
     disk:
-      name: odoo-data
+      name: odoo-filestore
       mountPath: /var/lib/odoo
       sizeGB: 1
