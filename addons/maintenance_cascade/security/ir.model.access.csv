@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_maintenance_building_all,maintenance.building.all,model_maintenance_building,,1,1,1,1
+access_maintenance_floor_all,maintenance.floor.all,model_maintenance_floor,,1,1,1,1
+access_maintenance_room_all,maintenance.room.all,model_maintenance_room,,1,1,1,1
+access_maintenance_building_public,maintenance.building.public,model_maintenance_building,base.group_public,1,0,0,0
+access_maintenance_floor_public,maintenance.floor.public,model_maintenance_floor,base.group_public,1,0,0,0
+access_maintenance_room_public,maintenance.room.public,model_maintenance_room,base.group_public,1,0,0,0

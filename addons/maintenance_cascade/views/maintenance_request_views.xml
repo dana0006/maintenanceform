@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Building Views -->
+    <record id="view_maintenance_building_tree" model="ir.ui.view">
+        <field name="name">maintenance.building.tree</field>
+        <field name="model">maintenance.building</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_maintenance_building_form" model="ir.ui.view">
+        <field name="name">maintenance.building.form</field>
+        <field name="model">maintenance.building</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="sequence"/>
+                        <field name="active"/>
+                    </group>
+                    <notebook>
+                        <page string="Floors">
+                            <field name="floor_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="active"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Floor Views -->
+    <record id="view_maintenance_floor_tree" model="ir.ui.view">
+        <field name="name">maintenance.floor.tree</field>
+        <field name="model">maintenance.floor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="building_id"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_maintenance_floor_form" model="ir.ui.view">
+        <field name="name">maintenance.floor.form</field>
+        <field name="model">maintenance.floor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="building_id"/>
+                        <field name="sequence"/>
+                        <field name="active"/>
+                    </group>
+                    <notebook>
+                        <page string="Rooms">
+                            <field name="room_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                    <field name="active"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Room Views -->
+    <record id="view_maintenance_room_tree" model="ir.ui.view">
+        <field name="name">maintenance.room.tree</field>
+        <field name="model">maintenance.room</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="floor_id"/>
+                <field name="building_id"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_maintenance_room_form" model="ir.ui.view">
+        <field name="name">maintenance.room.form</field>
+        <field name="model">maintenance.room</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="floor_id"/>
+                        <field name="building_id"/>
+                        <field name="sequence"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_maintenance_building" model="ir.actions.act_window">
+        <field name="name">Buildings</field>
+        <field name="res_model">maintenance.building</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_maintenance_floor" model="ir.actions.act_window">
+        <field name="name">Floors</field>
+        <field name="res_model">maintenance.floor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_maintenance_room" model="ir.actions.act_window">
+        <field name="name">Rooms</field>
+        <field name="res_model">maintenance.room</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_maintenance_locations" 
+              name="Locations" 
+              parent="maintenance.menu_maintenance_title" 
+              sequence="50"/>
+    
+    <menuitem id="menu_maintenance_building" 
+              name="Buildings" 
+              parent="menu_maintenance_locations" 
+              action="action_maintenance_building" 
+              sequence="1"/>
+    
+    <menuitem id="menu_maintenance_floor" 
+              name="Floors" 
+              parent="menu_maintenance_locations" 
+              action="action_maintenance_floor" 
+              sequence="2"/>
+    
+    <menuitem id="menu_maintenance_room" 
+              name="Rooms" 
+              parent="menu_maintenance_locations" 
+              action="action_maintenance_room" 
+              sequence="3"/>
+
+</odoo>
