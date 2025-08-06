@@ -1,0 +1,23 @@
+.maintenance-form .card {
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.maintenance-form .card-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.maintenance-form .form-control:focus {
+    border-color: #875A7B;
+    box-shadow: 0 0 0 0.2rem rgba(135, 90, 123, 0.25);
+}
+
+.maintenance-form .btn-primary {
+    background-color: #875A7B;
+    border-color: #875A7B;
+}
+
+.maintenance-form .btn-primary:hover {
+    background-color: #714B67;
+    border-color: #714B67;
+}
