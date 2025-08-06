@@ -6,7 +6,6 @@ class MaintenancePublicController(http.Controller):
     
     @http.route('/maintenance/request', type='http', auth='public', website=True, sitemap=True)
     def maintenance_form(self, **kwargs):
-        """Display the public maintenance request form"""
         buildings = request.env['maintenance.building'].sudo().search([('active', '=', True)])
         return request.render('maintenance_cascade.public_maintenance_form', {
             'buildings': buildings,
@@ -14,7 +13,6 @@ class MaintenancePublicController(http.Controller):
     
     @http.route('/maintenance/get-floors/<int:building_id>', type='json', auth='public')
     def get_floors(self, building_id):
-        """Get floors for selected building"""
         floors = request.env['maintenance.floor'].sudo().search([
             ('building_id', '=', building_id),
             ('active', '=', True)
@@ -23,7 +21,6 @@ class MaintenancePublicController(http.Controller):
     
     @http.route('/maintenance/get-rooms/<int:floor_id>', type='json', auth='public')
     def get_rooms(self, floor_id):
-        """Get rooms for selected floor"""
         rooms = request.env['maintenance.room'].sudo().search([
             ('floor_id', '=', floor_id),
             ('active', '=', True)
@@ -32,8 +29,6 @@ class MaintenancePublicController(http.Controller):
     
     @http.route('/maintenance/submit', type='http', auth='public', methods=['POST'], website=True, csrf=False)
     def submit_request(self, **post):
-        """Handle form submission"""
-        # Create maintenance request
         maintenance_request = request.env['maintenance.request'].sudo().create({
             'name': post.get('subject', 'Public Maintenance Request'),
             'description': post.get('description'),
@@ -47,12 +42,11 @@ class MaintenancePublicController(http.Controller):
             'requester_phone': post.get('requester_phone'),
         })
         
-        # Handle file uploads
         if 'photos' in request.httprequest.files:
             files = request.httprequest.files.getlist('photos')
             for file in files:
                 if file.filename:
-                    attachment = request.env['ir.attachment'].sudo().create({
+                    request.env['ir.attachment'].sudo().create({
                         'name': file.filename,
                         'type': 'binary',
                         'datas': base64.b64encode(file.read()),

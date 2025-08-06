@@ -21,11 +21,6 @@ class MaintenanceFloor(models.Model):
     building_id = fields.Many2one('maintenance.building', string='Building', required=True, ondelete='cascade')
     room_ids = fields.One2many('maintenance.room', 'floor_id', string='Rooms')
     active = fields.Boolean('Active', default=True)
-    
-    @api.depends('name', 'building_id.name')
-    def _compute_display_name(self):
-        for record in self:
-            record.display_name = f"{record.building_id.name} - {record.name}"
 
 class MaintenanceRoom(models.Model):
     _name = 'maintenance.room'
@@ -43,10 +38,9 @@ class MaintenanceRequest(models.Model):
     _inherit = 'maintenance.request'
     
     building_id = fields.Many2one('maintenance.building', string='Building')
-    floor_id = fields.Many2one('maintenance.floor', string='Floor', domain="[('building_id', '=', building_id)]")
-    room_id = fields.Many2one('maintenance.room', string='Room/Location', domain="[('floor_id', '=', floor_id)]")
+    floor_id = fields.Many2one('maintenance.floor', string='Floor')
+    room_id = fields.Many2one('maintenance.room', string='Room/Location')
     
-    # Requester information for public submissions
     requester_name = fields.Char('Requester Name')
     requester_email = fields.Char('Requester Email')
     requester_phone = fields.Char('Requester Phone')
@@ -55,7 +49,9 @@ class MaintenanceRequest(models.Model):
     def _onchange_building_id(self):
         self.floor_id = False
         self.room_id = False
+        return {'domain': {'floor_id': [('building_id', '=', self.building_id.id)]}}
         
     @api.onchange('floor_id')
     def _onchange_floor_id(self):
         self.room_id = False
+        return {'domain': {'room_id': [('floor_id', '=', self.floor_id.id)]}}
